@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/savesetails/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<table border="2">
+    <tr><th>Registration Form</th></tr>
+    <tr><td><input type="number" placeholder="Id" name="t1" required></td></tr>
+    <tr><td><input type="text" placeholder="Name" name="t2" required></td></tr>
+    <tr><td><input type="date" placeholder="Date Of Birth" name="t3" required></td></tr>
+    <tr><td><input type="date" placeholder="Date Of Join" name="t4" required></td></tr>
+    <tr><td><select name="t5">
+        <option>male</option>
+        <option>female</option>
+            </select></td></tr>
+    <tr><td><select name="t6">
+        <option>Developer</option>
+        <option>Tester</option>
+        <option>Designer</option>
+    </select></td></tr>
+    <tr><td><input type="number" placeholder="Contact No" name="t7" required></td></tr>
+    <tr><td><input type="email" placeholder="Email Id" name="t8" required></td></tr>
+    <tr><td><input type="number" placeholder="Salery" name="t9" required></td></tr>
+    <tr><td><input type="file" name="t10"></td></tr>
+    <tr><td><button>Save</button></td></tr>
+    <tr><td>{{ msg }}</td></tr>
+</table>
+</form>
+<table border="2">
+    <th colspan="4">Employee Information</th>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th></th>
+    </tr>
+    {% for x in employee  %}
+    <tr>
+        <th>{{ x.id }}</th>
+        <th>{{ x.name }}</th>
+        <th>
+          {% load staticfiles %}
+            <img src="{% static 'images/stu3.jpg' %}" >
+        </th>
+        <td>
+            <form action="/viewdetails/" method="post">
+                {% csrf_token %}
+                <input type="submit" value="View">
+                <input type="hidden"  value="{{ x.id }}" name="t1">
+            </form>
+        <br><br>
+        <form action="/deletedetails/" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete">
+            <input type="hidden" value="{{ x.id }}" name="t2">
+        </form><br><br>
+        <form action="/updatedetails/" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Update">
+            <input type="hidden" value="{{ x.id }}" name="u_id">
+        </form>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

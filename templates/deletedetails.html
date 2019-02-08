@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table align="center" border="2">
+    {% for x in datas%}
+        <tr>
+            <td>idno</td>
+            <td>{{ x.id }}</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>{{ x.name }}</td>
+        </tr>
+        <tr>
+            <td>date of birth</td>
+            <td>{{ x.dob }}</td>
+        </tr>
+        <tr>
+            <td>Date Of Join</td>
+            <td>{{ x.doj }}</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>{{ x.gender }}</td>
+        </tr>
+        <tr>
+            <td>Designition</td>
+            <td>{{ x.designition }}</td>
+        </tr>
+        <tr>
+            <td>contact</td>
+            <td>{{ x.contact }}</td>
+        </tr>
+        <tr>
+            <td>email Id</td>
+            <td>{{ x.email }}</td>
+        </tr>
+        <tr>
+            <td>Salary</td>
+            <td>{{ x.salery }}</td>
+        </tr>
+    {% endfor %}
+     <tr>
+         <th colspan="2">Do You want To Delete Press Yes or No</th>
+     </tr>
+     {% for x in datas %}
+     <tr>
+         <th>
+             <form action="/delete/" method="post">
+                 {% csrf_token %}
+                 <input type="submit" value="Delete">
+                 <input type="hidden" value="{{ x.id }}" name="del_id">
+             </form>
+         </th>
+         <th>
+             <form action="/index/">
+                 <input type="submit" value="No">
+             </form>
+         </th>
+     </tr>
+     {% endfor %}
+</table>
+
+</body>
+</html>

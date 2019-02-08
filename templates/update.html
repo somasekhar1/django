@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/savesetails/" method="post" >
+{% csrf_token %}
+ {% for x in d2 %}
+     <table align="center" border="2">
+ <tr><th>Update Details</th></tr>
+    <tr><td><input type="number" placeholder="Id" value="{{ x.id }}" readonly name="t1" required></td></tr>
+    <tr><td><input type="text" placeholder="Name" value="{{x.name }}" name="t2" required></td></tr>
+    <tr><td><input type="date" placeholder="Date Of Birth" value="{{ x.dob }}" name="t3" required></td></tr>
+    <tr><td><input type="date" placeholder="Date Of Join" value="{{ x.doj }}" name="t4" required></td></tr>
+    <tr><td><select name="t5">
+        <option>male</option>
+        <option>female</option>
+            </select></td></tr>
+    <tr><td><select name="t6">
+        <option>Developer</option>
+        <option>Tester</option>
+        <option>Designer</option>
+    </select></td></tr>
+    <tr><td><input type="number" placeholder="Contact No"  value="{{ x.contact }}" name="t7" required></td></tr>
+    <tr><td><input type="email" placeholder="Email Id" value="{{ x.email }}" name="t8" required></td></tr>
+    <tr><td><input type="number" placeholder="Salery" value="{{ x.salery }}" name="t9" required></td></tr>
+     <tr><td><button>Save</button></td></tr>
+ {% endfor %}
+ </table>
+</form>
+</body>
+</html>
